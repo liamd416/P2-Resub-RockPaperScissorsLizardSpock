@@ -4,9 +4,9 @@ const computerDisplay = document.getElementById("computerDisplay");
 const resultDisplay = document.getElementById("resultDisplay");
 const playerScoreDisplay = document.getElementById("playerScoreDisplay");
 const computerScoreDisplay = document.getElementById("computerScoreDisplay");
-const resetGame = document.getElementById("resetGame")
 let playerScore = 0;
 let computerScore = 0;
+
 
 function playGame(playerChoice){
     
@@ -14,33 +14,46 @@ function playGame(playerChoice){
     let result = "";
 
     if(playerChoice === computerChoice) {
-        result = "IT'S A TIE!";
+        result = "IT's A TIE!";
     }
-    else {
+    else{
         switch(playerChoice){
-
-        case "✊":
-            result = (computerChoice === "✂️" || computerChoice === "🦎") ? "YOU WIN!" : "YOU LOSE!";
-            break;
-        case "📃":
-            result = (computerChoice === "✊" || computerChoice === "🖖") ? "YOU WIN!" : "YOU LOSE!";
-            break;
-        case "✂️":
-            result = (computerChoice === "📃" || computerChoice === "🦎") ? "YOU WIN!" : "YOU LOSE!";
-            break;
-        case "🦎":
-            result = (computerChoice === "🖖" || computerChoice === "📃") ? "YOU WIN!" : "YOU LOSE!";
-            break;
-        case "🖖":
-            result = (computerChoice === "✂️" || computerChoice === "✊") ? "YOU WIN!" : "YOU LOSE!";
-            break;
-
+            case "✊":
+                result = (computerChoice === "✂️" || computerChoice === "🦎") ? "YOU WIN!" : "YOU LOSE!";
+                break;
+            case "📃":
+                result = (computerChoice === "✊" || computerChoice === "🖖") ? "YOU WIN!" : "YOU LOSE!";
+                break;
+            case "✂️":
+                result = (computerChoice === "📃" || computerChoice === "🦎") ? "YOU WIN!" : "YOU LOSE!";
+                break;
+            case "🦎":
+                result = (computerChoice === "🖖" || computerChoice === "📃") ? "YOU WIN!" : "YOU LOSE!";
+                break;
+            case "🖖":
+                result = (computerChoice === "✂️" || computerChoice === "✊") ? "YOU WIN!" : "YOU LOSE!";
+                break;
         }
-    
-        playerDisplay.textContent = `PLAYER: ${playerChoice}`;
-        computerDisplay.textContent = `Computer: ${computerChoice}`;
-        resultDisplay.textContent = result;
-    
-        resultDisplay.classList.remove("greenText", "redText");
+
     }
+
+    playerDisplay.textContent = `PLAYER: ${playerChoice}`;
+    computerDisplay.textContent = `Computer: ${computerChoice}`;
+    resultDisplay.textContent = result;
+
+    resultDisplay.classList.remove("greenText", "redText");
+
+    switch(result){
+        case "YOU WIN!":
+            resultDisplay.classList.add("greenText");
+            playerScore++;
+            playerScoreDisplay.textContent = playerScore;
+            break;
+        case "YOU LOSE!":
+            resultDisplay.classList.add("redText");
+            computerScore++;
+            computerScoreDisplay.textContent = computerScore;
+            break;
+    }
+    
 }
